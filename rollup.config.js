@@ -7,6 +7,9 @@ import livereload from 'rollup-plugin-livereload';
 import css from 'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
+import { electron } from "rollup-plugin-electron";
+import { format } from 'path';
+import { dir } from 'console';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -32,12 +35,22 @@ function serve() {
 }
 
 export default {
+	// electron build
+	input: 'electron/main.ts',
+	output: {
+		sourcemap: true,
+		format:'cjs',
+		dir: "electron/dist"
+	},
+	// --------------------
+
 	input: 'src/main.ts',
 	output: {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'build/bundle/bundle.js'
+		file: 'build/bundle/bundle.js',
+		format:'cjs'
 	},
 	plugins: [
 		svelte({
@@ -62,6 +75,10 @@ export default {
 			exportConditions: ['svelte']
 		}),
 		commonjs(),
+		electron({
+				include: "electron/main.ts",
+				outputDir: "electron/dist"
+		}),
 		typescript({
 			sourceMap: !production,
 			inlineSources: !production
@@ -73,7 +90,7 @@ export default {
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		!production && livereload('build'),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
