@@ -6,13 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-
-
 build/**/*
-
-
-
-
 
 .vscode/
 # Diagnostic reports (https://nodejs.org/api/report.html)
@@ -154,6 +148,3 @@ yarn.lock
 # TernJS port file
 .tern-port
 
-
-
-build/ui/main.js
