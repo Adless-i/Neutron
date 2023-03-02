@@ -19,7 +19,7 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'build/ui/main.js'
+		file: 'build/src/main.js'
 	},
 
 

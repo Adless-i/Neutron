@@ -5,8 +5,8 @@
   "type": "module",
   "main": "build/electron/main.js",
   "scripts": {
-    "build": "tsc -p electron/tsconfig.json && mv electron/dist/main.js electron/dist/main.cjs && rollup -c",
-    "test": "electron electron/dist/main.cjs",
+    "build": "node_modules/.bin/tsc -p electron/tsconfig.json && mv electron/dist/main.js electron/dist/main.cjs && rollup -c",
+    "test": "node_modules/.bin/electron electron/dist/main.cjs",
     "dev": "rollup -c -w",
     "start": "npm run build && npm run test",
     "check": "svelte-check"
