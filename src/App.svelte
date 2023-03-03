@@ -1,11 +1,7 @@
 <script lang="ts">
-	export var name: string | any;
-
-	function change() {
-		name = (<HTMLInputElement>document.getElementById("Date")).value;
-	}
+	import Navbar from "./head/Navbar.svelte";
 </script>
 
 <main>
-	
+	<Navbar/>
 </main>
